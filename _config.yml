@@ -1,0 +1,50 @@
+
+encoding: UTF-8
+timezone: America/Chicago
+
+title: Milan Raj
+contact_url: http://milanraj.com
+author: rajsite
+name: Milan Raj
+
+description: >
+  Bringing Web, Engineering, Cloud, and Earth tidbits straight to your neural implant
+
+logo: /assets/images/logo.gif
+url: http://rajsite.com
+baseurl: ''
+
+paginate: 5
+repository: rajsite/rajsite.github.io
+bio: All Things Web | Engineering | <3 | Austin, TX
+author_image: /assets/images/author.jpg
+twitter_username: rajsite
+github_username:  rajsite
+linkedin_username:  milanraj
+
+facebook:
+  admins: 506513914
+
+twitter:
+  username: rajsite
+
+exclude:
+  - CNAME
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - README.md
+  - package.json
+  - node_modules
+
+markdown: kramdown
+
+kramdown:
+  parse_block_html: true
+
+gems:
+  - jekyll-paginate
+  - jemoji
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-seo-tag

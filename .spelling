@@ -1,0 +1,27 @@
+# markdown-spellcheck spelling configuration file
+# Format - lines beginning # are comments
+# global dictionary is at the start, file overrides afterwards
+# one word per line, to define a file override use ' - filename'
+# where filename is relative to this configuration file
+
+# Social Media
+LinkedIn
+rajsite.com
+
+# NI Terms
+LabVIEW
+VIs
+
+# Tech Terms
+JSON
+
+# Dictionary Words
+programmatically
+natively
+performant
+i.e.
+SSL
+OAuth
+ - _posts/2016-06-25-scraping-web-pages-in-labview.md
+1.0a
+2.0

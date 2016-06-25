@@ -1,0 +1,12 @@
+{% capture newline_cache %}
+<span class="social-media-icons">
+{% if include.username %}
+<a href="https://twitter.com/{{ include.username }}" title="{{ include.username }} on Twitter">
+<span class="icon">{% include icon-twitter.svg %}</span>
+<span class="username">{{ include.username }}</span>
+</a>
+{% else %}
+<span class="icon">{% include icon-twitter.svg %}</span>
+{% endif %}
+</span>
+{% endcapture %}{{ newline_cache | strip_newlines }}

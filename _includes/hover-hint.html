@@ -1,0 +1,3 @@
+{% capture newline_cache %}
+<span class="hover-hint" title="{{ include.hint }}">{{ include.text }}</span>
+{% endcapture %}{{ newline_cache | strip_newlines }}

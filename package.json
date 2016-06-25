@@ -1,0 +1,24 @@
+{
+  "name": "rajsite",
+  "version": "1.0.0",
+  "description": "Tooling for rajsite.com homepage",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rajsite/rajsite.github.io.git"
+  },
+  "author": "Milan Raj (@rajsite)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rajsite/rajsite.github.io/issues"
+  },
+  "homepage": "https://github.com/rajsite/rajsite.github.io#readme",
+  "devDependencies": {
+    "markdown-spellcheck": "^0.11.0"
+  },
+  "scripts": {
+    "test": "npm run spelltest",
+    "spellcheck": "mdspell --en-us \"**/*.md\" \"!**/node_modules/**/*.md\" \"!**/_site/**/*.md\"",
+    "spelltest": "mdspell --en-us --report \"**/*.md\" \"!**/node_modules/**/*.md\" \"!**/_site/**/*.md\"",
+    "serve": "jekyll serve --watch"
+  }
+}

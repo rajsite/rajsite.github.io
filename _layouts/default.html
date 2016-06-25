@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html amp lang="en">
+{% include head.html %}
+
+<body>
+<amp-analytics type="googleanalytics" id="analytics">
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-78463139-1"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
+
+{% include header.html %}
+
+{{ content }}
+</body>
+</html>
