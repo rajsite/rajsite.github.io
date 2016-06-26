@@ -16,9 +16,12 @@
     "markdown-spellcheck": "^0.11.0"
   },
   "scripts": {
-    "test": "npm run spelltest",
-    "spellcheck": "mdspell --en-us \"**/*.md\" \"!**/node_modules/**/*.md\" \"!**/_site/**/*.md\"",
-    "spelltest": "mdspell --en-us --report \"**/*.md\" \"!**/node_modules/**/*.md\" \"!**/_site/**/*.md\"",
-    "serve": "jekyll serve --watch"
+    "pretest": "npm run build",
+    "test": "npm run test:spelling && npm run test:travis",
+	"test:spelling": "npm run spellcheck -- --report",
+    "test:travis": "bundle exec travis lint .travis.yml",
+	"build": "bundle exec jekyll build",
+    "spellcheck": "mdspell --en-us \"**/*.md\" \"!node_modules/**\" \"!_site/**\"",
+    "serve": "bundle exec jekyll serve --watch"
   }
 }
