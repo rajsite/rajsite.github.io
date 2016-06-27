@@ -17,11 +17,13 @@
   },
   "scripts": {
     "pretest": "npm run build",
-    "test": "npm run test:spelling && npm run test:travis",
+    "test": "npm run test:spelling",
 	"test:spelling": "npm run spellcheck -- --report",
-    "test:travis": "bundle exec travis lint .travis.yml",
+    "test:all": "npm run test && npm run test:manual",
+	"test:manual": "npm run lint:travis",
+    "lint:travis": "bundle exec travis lint .travis.yml",
 	"build": "bundle exec jekyll build",
-    "spellcheck": "mdspell --en-us \"**/*.md\" \"!node_modules/**\" \"!_site/**\"",
+    "spellcheck": "mdspell --en-us --ignore-numbers \"**/*.md\" \"!node_modules/**\" \"!_site/**\" \"!vendor/**\"",
     "serve": "bundle exec jekyll serve --watch"
   }
 }
