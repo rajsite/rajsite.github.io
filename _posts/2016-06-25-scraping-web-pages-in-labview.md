@@ -104,7 +104,7 @@ In the video we were lucky to find data as [XML which LabVIEW can parse natively
 
 However, there are some hurdles that you may run into:
 
-- The web service requires user login, i.e. {% include hover-hint.html text="Authentication" hint="telling the service who you are or who you represent" %} and {% include hover-hint.html text="Authorization" hint="figuring out what you can do or requesting something to do" %}
+- The web service requires user login, i.e. {% include hover-hint.html text="Authentication" hint="Telling the service who you are or who you represent" %} and {% include hover-hint.html text="Authorization" hint="Figuring out what you can do or requesting something to do" %}
 
     This is a fairly involved topic. However some forms of login such as Client Side SSL, OAuth 1.0a, Basic Authentication, and some approaches to OAuth 2.0 are very doable in LabVIEW. In addition, using .NET Libraries for accessing web services is an approach that works well on certain platforms.
 
