@@ -7,6 +7,7 @@
 [![Build Status](https://travis-ci.org/rajsite/rajsite.com.svg?branch=gh-pages)](https://travis-ci.org/rajsite/rajsite.com)
 [![Code Climate](https://codeclimate.com/github/rajsite/rajsite.com/badges/gpa.svg)](https://codeclimate.com/github/rajsite/rajsite.com)
 [![Issue Count](https://codeclimate.com/github/rajsite/rajsite.com/badges/issue_count.svg)](https://codeclimate.com/github/rajsite/rajsite.com)
+[![Website Up Badge](https://img.shields.io/website/http/rajsite.com.svg?label=rajsite.com)](http://rajsite.com)
 
 This site is implemented using the [Amplify Jekyll theme](https://github.com/ageitgey/amplify) as a starting point. The primary feature is utilization of the [AMP Project](https://www.ampproject.org/) from Google to make pages really, really, really ridiculously performant :sparkles:.
 
