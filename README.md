@@ -8,6 +8,7 @@
 [![Dependency Status](https://gemnasium.com/badges/github.com/rajsite/rajsite.com.svg)](https://gemnasium.com/github.com/rajsite/rajsite.com)
 [![Code Climate](https://codeclimate.com/github/rajsite/rajsite.com/badges/gpa.svg)](https://codeclimate.com/github/rajsite/rajsite.com)
 [![Issue Count](https://codeclimate.com/github/rajsite/rajsite.com/badges/issue_count.svg)](https://codeclimate.com/github/rajsite/rajsite.com)
+[![Maintenance](https://img.shields.io/maintenance/yes/2016.svg)](http://rajsite.com)
 [![Website Up Badge](https://img.shields.io/website/http/rajsite.com.svg?label=rajsite.com)](http://rajsite.com)
 
 This site is implemented using the [Amplify Jekyll theme](https://github.com/ageitgey/amplify) as a starting point. The primary feature is utilization of the [AMP Project](https://www.ampproject.org/) from Google to make pages really, really, really ridiculously performant :sparkles:.
