@@ -1,5 +1,8 @@
 language: node_js
 
+before_install:
+- rvm install 2.2
+
 install:
 - bundle install --path vendor/bundle
 - npm install

@@ -36,6 +36,7 @@ exclude:
   - README.md
   - package.json
   - node_modules
+  - vendor
 
 markdown: kramdown
 
