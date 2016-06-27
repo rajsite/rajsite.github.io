@@ -1,6 +1,6 @@
 # Milan Raj
 
-*A blog by developer [Milan Raj](https://linkedin.com/in/milanraj) to share tidbits about the Web, Software and Engineering at [rajsite.com](https://www.rajsite.com)*
+*A blog by developer [Milan Raj](https://linkedin.com/in/milanraj) to share tidbits about the Web, Software, and Engineering at [rajsite.com](https://www.rajsite.com)*
 
 [![Build Status](https://travis-ci.org/rajsite/rajsite.com.svg?branch=gh-pages)](https://travis-ci.org/rajsite/rajsite.com)
 [![Dependency Status](https://gemnasium.com/badges/github.com/rajsite/rajsite.com.svg)](https://gemnasium.com/github.com/rajsite/rajsite.com)
