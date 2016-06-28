@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Scraping Web Pages in LabVIEW
+image: /assets/scraping/weather_inspect_element_thumbnail.jpg
 ---
 
 I made a video showing how! Well, I made it {% include hover-hint.html text="several weeks ago..." hint="Some might even call it months..." %}
