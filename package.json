@@ -18,11 +18,11 @@
   "scripts": {
     "pretest": "npm run build",
     "test": "npm run test:spelling",
-	"test:spelling": "npm run spellcheck -- --report",
+    "test:spelling": "npm run spellcheck -- --report",
     "test:all": "npm run test && npm run test:manual",
-	"test:manual": "npm run lint:travis",
+    "test:manual": "npm run lint:travis",
     "lint:travis": "bundle exec travis lint .travis.yml",
-	"build": "bundle exec jekyll build",
+    "build": "bundle exec jekyll build",
     "spellcheck": "mdspell --en-us --ignore-numbers \"**/*.md\" \"!node_modules/**\" \"!_site/**\" \"!vendor/**\"",
     "serve": "bundle exec jekyll serve --watch"
   }

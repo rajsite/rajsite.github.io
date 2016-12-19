@@ -6,8 +6,7 @@ root = true
 # Matches all files except those in the _site and node_modules folders
 [{/*,/_includes/*,/_layouts/*,/_posts/*,/_sass/*,/assets/*}]
 
-# Unix-style newlines with a newline ending every file
-end_of_line = lf
+# Newline ending every file
 insert_final_newline = true
 
 # Set default charset
