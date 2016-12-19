@@ -6,6 +6,7 @@ install:
 - npm install
 branches:
   only:
+  - gh-pages
   - /^.*$/
 env:
   global:
