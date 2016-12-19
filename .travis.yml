@@ -6,7 +6,7 @@ install:
 - npm install
 branches:
   only:
-  - "/.*/"
+  - /.*/
 env:
   global:
     secure: yE2uJ9Nn3tdCH+dmg2O73oV+ZGanQSkvL1NEK97WfphJbiFtatkb3De0vRtJ6PP/6G7od4niHFUthvfRZ8IW/5iLoxbW4Mf5Fo4rOn5PpI2deQL5KscMsDbwS/zP/9Iid7VG4CLxjnVA6R2BkfnVUZcsNIZXAMdt8V5Ez/HHPxEtZQUQfyzJ4wGTVtZem7LIeeSzOXZZPMj3yUCU3CjIH5BOf3l+uSEtK3Oxyu6nXoHFjX30sL6CnLwsGoPWQPV4MQl6skKC2fcA6sJPn1jdfdWC2dLZLBLrMtDDU6zVxtxYfL8z1uQyZXbLb4q4mINc08MHb1Oil1sAd4KwA9LyVYp+HdE3o/FKPwWrIjVCpV2Yjekv3rkKh/8heEWHC6NCtdPQa2dsiVgawzmlQcErEvZt546bNR5luZvDXipUXs/5NgyR5l+1qmpDMJDgGnDMH1vK58Sx8GI+o7lZAKpWITm7SKCLfpDccvXdiZSLmq7SUq+4qnehu/QsuBIWO7QTfU1kwyncbv7bdZxLtDlF40AWyIc3P/vtzTnOW1RVgtDkOVJFMCJsfng0Hh10+6/g9jh25mp2ZOMsAvDWYfbVQx6+OVojvkHHvI+QbJZytLQUkmrdu4oiENakL3bMsJ+NQcdKzOamTR1Dg65QC6OXEQb9rPu44Yz5TiV3CYxmHlc=
