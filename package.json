@@ -23,7 +23,7 @@
     "test:manual": "npm run lint:travis",
     "lint:travis": "bundle exec travis lint .travis.yml",
     "build": "bundle exec jekyll build",
-    "spellcheck": "mdspell --en-us --ignore-numbers \"**/*.md\" \"!node_modules/**\" \"!_site/**\" \"!vendor/**\"",
-    "serve": "bundle exec jekyll serve --watch"
+    "spellcheck": "mdspell --en-us --ignore-numbers \"**/*.md\" \"!node_modules/**\" \"!_site/**\" \"!vendor/**\" \"!_drafts/**\"",
+    "serve": "bundle exec jekyll serve --watch --drafts"
   }
 }
