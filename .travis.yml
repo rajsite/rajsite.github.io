@@ -1,6 +1,10 @@
 language: node_js
 before_install:
+- rvm list rubies
 - rvm install 2.2
+- nvm ls
+- nvm ls-remote
+- nvm install 8.9
 install:
 - bundle install --path vendor/bundle
 - npm install
