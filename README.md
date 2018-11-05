@@ -3,11 +3,8 @@
 *A blog by developer [Milan Raj](https://linkedin.com/in/milanraj) to share tidbits about the Web, Software, and Engineering at [rajsite.com](http://www.rajsite.com)*
 
 [![Build Status](https://travis-ci.org/rajsite/rajsite.com.svg?branch=gh-pages)](https://travis-ci.org/rajsite/rajsite.com)
-[![Dependency Status](https://gemnasium.com/badges/github.com/rajsite/rajsite.com.svg)](https://gemnasium.com/github.com/rajsite/rajsite.com)
-[![Code Climate](https://codeclimate.com/github/rajsite/rajsite.com/badges/gpa.svg)](https://codeclimate.com/github/rajsite/rajsite.com)
-[![Repository Size](https://reposs.herokuapp.com/?path=rajsite/rajsite.com&style=flat&color=brightgreen)](https://github.com/ruddfawcett/reposs)
-[![Maintained: Yes](https://img.shields.io/maintenance/yes/2017.svg)](https://github.com/badges/shields/issues/607)
-[![Website Up Badge](https://img.shields.io/website/http/rajsite.com.svg?label=rajsite.com)](http://rajsite.com)
+[![Maintained: Yes](https://img.shields.io/maintenance/yes/2018.svg)](https://github.com/badges/shields/issues/607)
+[![Website Up Badge](https://img.shields.io/website/https/rajsite.com.svg?label=rajsite.com)](https://rajsite.com)
 
 ## Summary
 

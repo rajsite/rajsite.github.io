@@ -1,7 +1,8 @@
 language: node_js
+dist: trusty
 before_install:
 - rvm list rubies
-- rvm install 2.2
+- rvm install 2.3
 - nvm ls
 - nvm ls-remote
 - nvm install 8.9
