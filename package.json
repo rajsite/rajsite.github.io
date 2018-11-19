@@ -21,6 +21,6 @@
     "lint-manual": "bundle exec travis lint .travis.yml",
     "build": "bundle exec jekyll build",
     "spellcheck": "mdspell --en-us --ignore-numbers \"**/*.md\" \"!node_modules/**\" \"!_site/**\" \"!vendor/**\" \"!_drafts/**\"",
-    "serve": "bundle exec jekyll serve --watch --drafts"
+    "start": "bundle exec jekyll serve --watch --drafts"
   }
 }
