@@ -1,13 +1,4 @@
----
-layout: post
-title: Scraping Web Pages in LabVIEW
-image: /assets/scraping/weather_inspect_element_thumbnail.jpg
-amp_include:
-  - amp-youtube
-  - amp-anim
----
-
-I made a video showing how! Well, I made it {% include hover-hint.html text="several weeks ago..." hint="Some might even call it months..." %}
+I made a video showing how! Well, I made it {% hoverhint "several weeks ago..." "Some might even call it months..." %}
 
 <amp-youtube width="480" height="270" layout="responsive" data-videoid="T-j1cvgNJ1I"></amp-youtube>
 
@@ -19,12 +10,12 @@ Watching the video you will see how to use the built-in browser developer tools,
 
 For example, let's say you want to get the current weather and decide to parse the front page of [Weather Underground][weather_underground_homepage_url]. The first thing you might try is right clicking on the weather shown on the page, choosing Inspect, and examining the DOM in the [Elements pane][chrome_dev_tools_elements_pane_url].
 
-<figure>
-<amp-anim width="640" height="509" layout="responsive" src="{{ site.baseurl }}/assets/scraping/weather_inspect_element.gif"></amp-anim>
-<figcaption>
+::: figure
+<amp-anim width="640" height="509" layout="responsive" src="/assets/scraping/weather_inspect_element.gif"></amp-anim>
+:::
+::: figcaption
 Using Inspect and the Elements pane to find where the temperature is located in the DOM
-</figcaption>
-</figure>
+:::
 
 ### Problems Relying on the Elements Pane
 
@@ -40,7 +31,7 @@ The best way to prevent issues with relying on DOM structure is to use an API pr
 
 For example, Weather Underground has the [Weather Underground API][weather_underground_api_url] which has [online documentation][weather_underground_api_docs_url] and returns easy to parse JSON:
 
-<figure>
+::: figure
 ```json
 {
   "response": {
@@ -66,21 +57,20 @@ For example, Weather Underground has the [Weather Underground API][weather_under
     "wind_dir": "SSE"
   }
 }
-
 ```
-<figcaption>
+:::
+::: figcaption
 Example response from Weather Underground API filtered to show relevant content.
-</figcaption>
-</figure>
+:::
 
 After signing up for the API to get our key and using the docs to understand the URL structure, we can create a VI that uses the Weather Underground API:
 
-<figure>
-<amp-img width="733" height="286" layout="responsive" src="{{ site.baseurl }}/assets/scraping/weather_underground_api.png"></amp-img>
-<figcaption>
+::: figure
+<amp-img width="733" height="286" layout="responsive" src="/assets/scraping/weather_underground_api.png"></amp-img>
+:::
+::: figcaption
 A LabVIEW VI that calls the Weather Underground API using a zip code and an API Key provided by registration
-</figcaption>
-</figure>
+:::
 
 ### When An API is Not Available
 
@@ -108,7 +98,7 @@ In the video we were lucky to find data as [XML which LabVIEW can parse natively
 
 However, there are some hurdles that you may run into:
 
-- The web service requires user login, i.e. {% include hover-hint.html text="Authentication" hint="Telling the service who you are or who you represent" %} and {% include hover-hint.html text="Authorization" hint="Figuring out what you can do or requesting something to do" %}
+- The web service requires user login, i.e. {% hoverhint "Authentication" "Telling the service who you are or who you represent" %} and {% hoverhint "Authorization." "Figuring out what you can do or requesting something to do" %}
 
     This is a fairly involved topic. However some forms of login such as Client Side SSL, OAuth 1.0a, Basic Authentication, and some approaches to OAuth 2.0 are very doable in LabVIEW. In addition, using .NET Libraries for accessing web services is an approach that works well on certain platforms.
 

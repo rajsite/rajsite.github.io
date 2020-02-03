@@ -3,30 +3,18 @@
 <link href='https://fonts.googleapis.com/css?family=Lora:400,700' rel='stylesheet' type='text/css'>
 
 <script async custom-element="amp-analytics" src="{{site.amp_src['amp-analytics']}}"></script>
-{% for amp_element in page.amp_include %}
+{% for amp_element in amp_include %}
 <script async custom-element="{{amp_element}}" src="{{site.amp_src[amp_element]}}"></script>
 {% endfor %}
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,minimum-scale=1">
-
-{% capture newline_cache %}
-{% if page.excerpt %}
-{{ page.excerpt | strip_html | truncate: 160 }}
-{% else %}
-{{ site.description }}
-{% endif %}
-{% endcapture %}
-<meta name="description" content="{{ newline_cache | strip_newlines }}">
-
-{% feed_meta %}
-
-{% seo %}
-
+<meta name="description" content="{{ description }}">
+<title>{{ title }} | {{site.name}}</title>
 <style amp-custom>
-{% capture include_to_scssify %}{% include styles.scss %}{% endcapture %}
-{{ include_to_scssify | scssify }}
+{% include prism-vs.css %}
+{% include styles.css %}
 </style>
 
 <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>

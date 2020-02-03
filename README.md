@@ -2,15 +2,13 @@
 
 *A blog by developer [Milan Raj](https://linkedin.com/in/milanraj) to share tidbits about the Web, Software, and Engineering at [rajsite.com](http://www.rajsite.com)*
 
-[![Build Status](https://travis-ci.org/rajsite/rajsite.com.svg?branch=gh-pages)](https://travis-ci.org/rajsite/rajsite.com)
-[![Maintained: Yes](https://img.shields.io/maintenance/yes/2018.svg)](https://github.com/badges/shields/issues/607)
-[![Website Up Badge](https://img.shields.io/website/https/rajsite.com.svg?label=rajsite.com)](https://rajsite.com)
-
 ## Summary
 
-This site is implemented using the [Amplify Jekyll theme](https://github.com/ageitgey/amplify) as a starting point. The primary feature is utilization of the [AMP Project](https://www.ampproject.org/) from Google to make pages really, really, really ridiculously performant :sparkles:.
+This site is implemented using the [Amplify Jekyll theme](https://github.com/ageitgey/amplify) as a starting point.
+The primary feature is utilization of the [AMP Project](https://amp.dev/) from Google to make pages really, really, really ridiculously performant :sparkles:.
 
-Having used [custom elements](http://www.html5rocks.com/en/tutorials/webcomponents/customelements/) extensively for over a year, it was great to see the AMP Project pick up [technologies](https://github.com/WebReflection/document-register-element) I utilize heavily. Creating this blog is as much an excuse for playing with AMP :zap: as a way to kindle my involvement in the software development community :fire:.
+Having used [custom elements](http://www.html5rocks.com/en/tutorials/webcomponents/customelements/) extensively for over a year, it was great to see the AMP Project pick up [technologies](https://github.com/WebReflection/document-register-element) I utilize heavily.
+Creating this blog is as much an excuse for playing with AMP :zap: as a way to kindle my involvement in the software development community :fire:.
 
 ᕕ( ᐛ )ᕗ
 

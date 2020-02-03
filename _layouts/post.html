@@ -1,10 +1,11 @@
 ---
 layout: default
+tags: post
 ---
 <main class="content" role="main">
 <article class="post">
 <div class="post-meta">
-<h1 class="post-title">{{ page.title }}</h1>
+<h1 class="post-title">{{ title }}</h1>
 </div>
 
 <section class="post-content">
@@ -13,11 +14,11 @@ layout: default
 </section>
 <footer class="post-footer">
 <section class="share">
-<a class="icon" href="https://github.com/{{ site.repository }}/blob/gh-pages/{{ page.path }}">
+<a class="icon" href="https://github.com/rajsite/rajsite.com/tree/master/{{ page.inputPath }}">
 Suggest an Edit
 </a>
-<a class="icon" href="https://twitter.com/intent/tweet?url={{ site.url }}{{ page.id }}&text={{page.title | cgi_escape}}&via={{ site.twitter_username }}" target="_blank" title="Share on Twitter">
-Share on {% include icon-twitter.html %}
+<a class="icon" href="https://twitter.com/intent/tweet?url=https://rajsite.com{{ page.url }}&via=rajsite" target="_blank" title="Share on Twitter">
+Share on <span class="icon">{% include icon-twitter.svg %}</span>
 </a>
 </section>
 </footer>
@@ -36,12 +37,12 @@ Share on {% include icon-twitter.html %}
 
 <div class="author-meta">
 <p class="author-social">
-{% include icon-github.html username=site.github_username %}
-{% include icon-twitter.html username=site.twitter_username %}
-{% include icon-linkedin.html username=site.linkedin_username %}
+{% include icon-github.html %}
+{% include icon-twitter.html %}
+{% include icon-linkedin.html %}
 </p>
 <hr>
-<p class="published">Published <time datetime="{{ page.date | date: "%F %R" }}">{{ page.date | date_to_string }}</time></p>
+<p class="published">Published <time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: '%d %b %Y' }}</time></p>
 </div>
 </section>
 </div>
@@ -50,9 +51,8 @@ Share on {% include icon-twitter.html %}
 <h5 class="index-headline">Powered By</h5>
 
 <footer class="site-footer">
-<section class="poweredby">Proudly published with <a href="https://pages.github.com/">Github Pages</a>, <a href="https://jekyllrb.com">Jekyll</a>, <a href="https://www.ampproject.org/">AMP Project</a> and <a href="https://github.com/ageitgey/amplify">Amplify</a></section>
-<a class="subscribe" href="{{ '/feed.xml' | prepend: site.baseurl }}"> <span class="tooltip"> <i class="fa fa-rss"></i> Subscribe to my feed.</span></a>
-<section class="copyright">All content copyright <a href="{{ site.contact_url }}">{{site.name}}</a> &copy; {{ site.time | date: '%Y' }}<br>All rights reserved.</section>
+<section class="poweredby">Proudly published with <a href="https://pages.github.com/">Github Pages</a>, <a href="https://www.11ty.dev/">Eleventy</a>, <a href="https://amp.dev/">AMP Project</a>, and <a href="https://github.com/ageitgey/amplify">Amplify</a></section>
+<section class="copyright">All content copyright <a href="{{ site.contact_url }}">{{site.name}}</a> &copy; {{ site.year }}<br>All rights reserved.</section>
 </footer>
 </div>
 
