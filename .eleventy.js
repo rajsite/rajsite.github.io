@@ -51,6 +51,8 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy("assets");
   eleventyConfig.addPassthroughCopy("favicon.ico");
+  eleventyConfig.addPassthroughCopy(".nojekyll");
+  eleventyConfig.addPassthroughCopy("CNAME");
 
   eleventyConfig.addShortcode("hoverhint", function(text, hint) {
     return `<span class="hover-hint" title="${hint}">${text}</span>`;
