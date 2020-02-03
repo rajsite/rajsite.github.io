@@ -26,3 +26,5 @@ jobs:
       with:
         name: build
         path: ./_site
+    - name: Deploy to GitHub Pages
+      run: dpl --provider=pages --skip_cleanup --name=rajsite --email=rajsite@users.noreply.github.com --github-token=${{ secrets.GITHUB_TOKEN }}
