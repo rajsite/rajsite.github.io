@@ -14,12 +14,22 @@
   },
   "homepage": "https://github.com/rajsite/rajsite.github.io#readme",
   "scripts": {
-    "build": "eleventy"
+    "build": "eleventy",
+    "link": "glob-exec --foreach \"{./*.md,./_posts/*.md}\" -- \"npm run markdown-link-check -- -c .linkcheck.json {{file}}\"",
+    "markdown-link-check": "markdown-link-check",
+    "lint": "markdownlint {./*.md,./_posts/*.md}",
+    "spelling": "mdspell --en-us --ignore-numbers --report \"./*.md\" \"./_posts/*.md\"",
+    "test": "npm run build && npm run lint && npm run spelling && npm run link",
+    "start": "eleventy --serve"
   },
   "dependencies": {
     "@11ty/eleventy": "^0.10.0",
     "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.1",
+    "glob-exec": "^0.1.1",
     "markdown-it-anchor": "^5.2.5",
-    "markdown-it-container": "^2.0.0"
+    "markdown-it-container": "^2.0.0",
+    "markdown-link-check": "^3.8.0",
+    "markdown-spellcheck": "^1.3.1",
+    "markdownlint-cli": "^0.21.0"
   }
 }

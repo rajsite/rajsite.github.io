@@ -13,7 +13,7 @@ module.exports = function (eleventyConfig) {
 
   md.use(require('markdown-it-container'), 'figure', {
     validate: function(params) {
-      return params.trim().match(/^figure$/);
+      return params.trim().match(/^`figure`$/);
     },
 
     render: function (tokens, idx) {
@@ -30,7 +30,7 @@ module.exports = function (eleventyConfig) {
 
   md.use(require('markdown-it-container'), 'figcaption', {
     validate: function(params) {
-      return params.trim().match(/^figcaption$/);
+      return params.trim().match(/^`figcaption`$/);
     },
 
     render: function (tokens, idx) {

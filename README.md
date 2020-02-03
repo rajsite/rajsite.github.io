@@ -12,6 +12,6 @@ Creating this blog is as much an excuse for playing with AMP :zap: as a way to k
 
 ᕕ( ᐛ )ᕗ
 
-## Let's get in touch!
+## Get in touch
 
 [GitHub](https://github.com/rajsite) - [Twitter](https://twitter.com/rajsite) - [LinkedIn](https://linkedin.com/in/milanraj)
