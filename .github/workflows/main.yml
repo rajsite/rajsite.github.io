@@ -27,4 +27,4 @@ jobs:
         name: build
         path: ./_site
     - name: Deploy to GitHub Pages
-      run: dpl --provider=pages --local_dir=_site --skip_cleanup --name=rajsite --email=rajsite@users.noreply.github.com --github-token=${{secrets.GITHUBPAGESDEPLOYTOKEN}}
+      run: dpl --provider=pages --repo=rajsite/rajsite.com --local_dir=_site --skip_cleanup --name=rajsite --email=rajsite@users.noreply.github.com --github-token=${{secrets.GITHUBPAGESDEPLOYTOKEN}}
