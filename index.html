@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html amp lang="en">
+<head>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Lora:400,700' rel='stylesheet' type='text/css'>
+
+<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,minimum-scale=1">
+<meta name="description" content="Bringing Web, Engineering, Cloud, and Earth tidbits straight to your neural implant">
+<link rel="canonical" href="https://rajsite.com/">
+<title>Home | Milan Raj</title>
+<style amp-custom>
+/**
+ * VS theme by Andrew Lock (https://andrewlock.net)
+ * Inspired by Visual Studio syntax coloring
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: #393A34;
+	font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	font-size: .9em;
+	line-height: 1.2em;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+pre > code[class*="language-"] {
+	font-size: 1em;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+	background: #C1DEF1;
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+	background: #C1DEF1;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+	border: 1px solid #dddddd;
+	background-color: white;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .2em;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	background: #f8f8f8;
+	border: 1px solid #dddddd;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: #008000;
+	font-style: italic;
+}
+
+.token.namespace {
+	opacity: .7;
+}
+
+.token.string {
+	color: #A31515;
+}
+
+.token.punctuation,
+.token.operator {
+	color: #393A34; /* no highlight */
+}
+
+.token.url,
+.token.symbol,
+.token.number,
+.token.boolean,
+.token.variable,
+.token.constant,
+.token.inserted {
+	color: #36acaa;
+}
+
+.token.atrule,
+.token.keyword,
+.token.attr-value,
+.language-autohotkey .token.selector,
+.language-json .token.boolean,
+.language-json .token.number,
+code[class*="language-css"] {
+	color: #0000ff;
+}
+
+.token.function {
+	color: #393A34;
+}
+
+.token.deleted,
+.language-autohotkey .token.tag {
+	color: #9a050f;
+}
+
+.token.selector,
+.language-autohotkey .token.keyword {
+	color: #00009f;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+
+.token.italic {
+	font-style: italic;
+}
+
+.token.class-name,
+.language-json .token.property {
+	color: #2B91AF;
+}
+
+.token.tag,
+.token.selector {
+	color: #800000;
+}
+
+.token.attr-name,
+.token.property,
+.token.regex,
+.token.entity {
+	color: #ff0000;
+}
+
+.token.directive.tag .tag {
+	background: #ffff00;
+	color: #393A34;
+}
+
+/* overrides color-values for the Line Numbers plugin
+ * http://prismjs.com/plugins/line-numbers/
+ */
+.line-numbers .line-numbers-rows {
+	border-right-color: #a5a5a5;
+}
+
+.line-numbers-rows > span:before {
+	color: #2B91AF;
+}
+
+/* overrides color-values for the Line Highlight plugin
+* http://prismjs.com/plugins/line-highlight/
+*/
+.line-highlight {
+	background: rgba(193, 222, 241, 0.2);
+	background: -webkit-linear-gradient(left, rgba(193, 222, 241, 0.2) 70%, rgba(221, 222, 241, 0));
+	background: linear-gradient(to right, rgba(193, 222, 241, 0.2) 70%, rgba(221, 222, 241, 0));
+}
+
+.social-media-icons {
+  white-space: nowrap;
+}
+
+.social-media-icons .username {
+  margin-left: 4px;
+  margin-right: 10px;
+  margin-bottom: 18px;
+}
+
+.icon {
+  display: inline-block;
+}
+
+.icon > svg {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+}
+
+.icon > svg path {
+  fill: #828282;
+}
+
+.hover-hint {
+  border-bottom: 1px dotted lightgray;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.hover-hint::after {
+  display: none;
+  content: attr(title);
+  margin: 20px;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: black;
+  color: white;
+  text-align: center;
+  white-space: pre-line;
+}
+
+.hover-hint:active::after {
+  display: block;
+}
+
+.cf:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+main {
+  display: block;
+}
+
+body {
+  font-family: "Helvetica Neue", "Open Sans", Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-feature-settings: "liga=1, dlig=1";
+  -ms-font-feature-settings: "liga", "dlig";
+  -webkit-font-feature-settings: "liga", "dlig";
+  -o-font-feature-settings: "liga", "dlig";
+  font-feature-settings: "liga", "dlig";
+}
+
+.site-header {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  margin: 16px auto 0 auto;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@media only screen and (max-width: 800px) {
+  .site-header {
+    padding: 0 16px;
+  }
+}
+
+.site-header .page-links {
+  display: block;
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  font-weight: 200;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 30px;
+}
+
+.site-header .page-links a {
+  text-decoration: none;
+  color: #999999;
+}
+
+.site-header .page-links a:hover {
+  color: #333333;
+}
+
+.blog-header {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border-bottom: 1px solid black;
+}
+
+.blog-header .blog-title {
+  margin-bottom: 8px;
+  font-size: 50px;
+  font-weight: 700;
+  letter-spacing: -2px;
+  outline: 0;
+  line-height: 50px;
+  word-break: break-word;
+  color: #333333;
+}
+
+.blog-header .blog-description {
+  font-size: 28px;
+  margin: 0 0 20px;
+  padding: 0;
+  line-height: 1.2;
+  color: #666666;
+  font-weight: 300;
+}
+
+.content {
+  width: 100%;
+  max-width: 700px;
+  margin: 25px auto 0 auto;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@media only screen and (max-width: 800px) {
+  .content {
+    padding: 0 16px;
+  }
+}
+
+.content article {
+  padding: 0;
+  border-bottom: 1px solid #f2f2f0;
+}
+
+.content article:last-child {
+  border-bottom: 0px;
+}
+
+.pagination {
+  text-align: center;
+  padding: 16px 0 0;
+  font-size: 12px;
+}
+
+.pagination a {
+  color: #999999;
+  text-decoration: none;
+}
+
+.pagination a:hover {
+  color: #333333;
+}
+
+.site-footer {
+  margin: 0 auto;
+  padding: 48px 0;
+  width: 100%;
+  max-width: 700px;
+  font-size: 12px;
+  text-align: center;
+  color: #999999;
+  line-height: 17.6px;
+}
+
+.site-footer a {
+  color: #666666;
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: #333333;
+}
+
+.post .post-meta {
+  font-family: "Helvetica Neue", "Open Sans", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  color: #b3b3b1;
+  line-height: 30px;
+}
+
+.post .post-meta a {
+  color: #b3b3b1;
+  text-decoration: none;
+}
+
+.post .post-meta a:hover {
+  text-decoration: underline;
+}
+
+.post .post-title {
+  font-weight: 700;
+  font-style: normal;
+  letter-spacing: -0.02em;
+  font-size: 36px;
+  line-height: 1.15;
+  color: #333332;
+  margin-bottom: 0px 0px;
+  display: block;
+}
+
+.post .post-title a {
+  text-decoration: none;
+  color: #333332;
+}
+
+.post .post-title a:hover {
+  text-decoration: none;
+}
+
+.post .post-excerpt {
+  letter-spacing: -0.02em;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 1.59;
+  color: #666665;
+}
+
+.post .post-meta-text {
+  color: #b3b3b1;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  overflow: hidden;
+  font-family: "Helvetica Neue", "Open Sans", Arial, Helvetica, sans-serif;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.post .post-content {
+  width: 100%;
+  font-family: Georgia, Cambria, "Times New Roman", Times, "Lora", serif;
+  color: #333333;
+}
+
+.post .post-content h1, .post .post-content h2, .post .post-content h3 {
+  font-family: "Helvetica Neue", "Open Sans", Arial, Helvetica, sans-serif;
+}
+
+.post .post-content h3, .post .post-content h4, .post .post-content h5, .post .post-content h6 {
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1.3;
+  margin-top: 50px;
+  margin-bottom: 0px;
+  font-family: "Helvetica Neue", "Open Sans", Arial, Helvetica, sans-serif;
+}
+
+.post .post-content h3 {
+  font-size: 36px;
+}
+
+.post .post-content h2, .post .post-content h1 {
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 42px;
+  line-height: 1.2;
+  margin-top: 50px;
+  margin-bottom: 0px;
+}
+
+.post .post-content p {
+  font-weight: 400;
+  font-style: normal;
+  font-size: 22px;
+  line-height: 1.59;
+  letter-spacing: -.002em;
+  margin-top: 30px;
+  margin-bottom: 0;
+  color: #333333;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+}
+
+.post .post-content a {
+  color: #333333;
+  text-decoration: underline;
+}
+
+.post .post-content amp-img, .post .post-content amp-youtube {
+  margin-top: 30px;
+}
+
+.post .post-content figure {
+  margin: 30px 0px 0px 0px;
+}
+
+.post .post-content figure amp-img {
+  text-align: center;
+}
+
+.post .post-content figcaption p {
+  font-weight: 400;
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.3;
+  color: #666665;
+  outline: 0;
+  z-index: 300;
+    /* Grrr need to get rid of it */
+  text-align: center;
+  margin-top: 15px;
+}
+
+.post .post-content hr {
+  border: 0;
+  padding: 0;
+  display: block;
+  width: 15%;
+  margin: 30px auto;
+  border: 0px solid #dddddd;
+  border-top: 1px solid #dddddd;
+}
+
+.post .post-content blockquote {
+  margin: 0 0 30px;
+  margin-left: -26px;
+  border-left: 3px solid #57ad68;
+  padding-left: 20px;
+}
+
+.post .post-content blockquote p {
+  letter-spacing: 0.01rem;
+  font-weight: 400;
+  padding-bottom: 3px;
+}
+
+.post .post-content ul, .post .post-content ol {
+  padding: 0;
+  margin: 0;
+}
+
+.post .post-content li {
+  padding: 0;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 23px;
+  line-height: 30px;
+  margin-left: 30px;
+  margin-bottom: 12px;
+  padding-top: 2px;
+    /*p {
+        padding: 0 0 1.618rem;
+      }*/;
+}
+
+.post .post-content ol li {
+  list-style-type: decimal;
+}
+
+.post .teaser {
+  padding: 50px 0 0 0;
+  font-family: "Helvetica Neue", "Open Sans", Arial, Helvetica, sans-serif;
+}
+
+.post .teaser hr {
+  border: 0;
+  padding: 0;
+  display: block;
+  width: 50%;
+  margin: 16px 0 16px 10px;
+  border: 0px solid #dddddd;
+  border-top: 1px solid #dddddd;
+}
+
+.post .teaser a {
+  color: black;
+  text-decoration: none;
+}
+
+.post .teaser a:hover {
+  color: #333333;
+  text-decoration: underline;
+}
+
+.post .teaser .index-headline {
+  border-top: 1px solid #dededc;
+  margin: 0;
+  padding: 16px 0;
+  color: #b3b3b1;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding-bottom: 10px;
+}
+
+.post .teaser .teaser-left {
+  font-size: 14px;
+  float: left;
+  width: 47%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@media only screen and (max-width: 800px) {
+  .post .teaser .teaser-left {
+    width: 100%;
+    padding-bottom: 32px;
+  }
+}
+
+.post .teaser .teaser-left .author-card {
+  overflow: hidden;
+  height: auto;
+}
+
+.post .teaser .teaser-left .author-image {
+  background-image: url('/assets/images/author.jpg');
+  width: 80px;
+  height: 80px;
+  margin-right: 20px;
+  float: left;
+  background-size: cover;
+  border-radius: 100%;
+}
+
+.post .teaser .teaser-left .author-name {
+  font-size: 18px;
+  margin: 0;
+}
+
+.post .teaser .teaser-left .author-bio {
+  margin-top: 1em;
+}
+
+.post .teaser .teaser-left .author-social {
+  line-height: 2em;
+  margin: 0;
+}
+
+.post .teaser .teaser-left .author-meta {
+  padding-left: 10px;
+}
+
+.post .teaser .teaser-left .published {
+  color: #999999;
+}
+
+.post .teaser .teaser-right {
+  float: right;
+  width: 47%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@media only screen and (max-width: 800px) {
+  .post .teaser .teaser-right {
+    width: 100%;
+  }
+}
+
+.post .teaser .teaser-right .site-footer {
+  margin: 0;
+  padding: 0;
+  color: #333333;
+  text-align: left;
+  font-size: 14px;
+  line-height: 1.3;
+  color: #999999;
+}
+
+.post .teaser .teaser-right .site-footer .poweredby {
+  display: block;
+  padding-bottom: 18px;
+  font-weight: 700;
+  color: #333333;
+}
+
+.share {
+  text-align: right;
+  padding: 20px 0 0;
+}
+
+.share a {
+  text-decoration: none;
+  color: #bbbbbb;
+  padding-left: 12px;
+}
+
+.share a .hidden {
+  display: none;
+}
+
+.share a:hover {
+  color: #333333;
+}
+
+pre[class*="language-"],
+code {
+  font-size: 15px;
+  border: 1px solid #e8e8e8;
+  border-radius: 3px;
+  background-color: #eeeeff;
+}
+
+code {
+  padding: 1px 5px;
+}
+
+pre {
+  padding: 8px 12px;
+  overflow-x: scroll;
+}
+
+pre > code {
+  border: 0;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.pagination .disabled {
+  opacity: 0;
+}
+
+</style>
+
+<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+<script async src="https://cdn.ampproject.org/v0.js"></script>
+</head>
+
+<body>
+<amp-analytics type="googleanalytics" id="analytics">
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-78463139-1"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
+
+<header class="site-header">
+ <a href="/" class="logo"><span class="logo"><amp-img src="/assets/images/logo.gif" width="48" height="48" /></span></a>
+ <div class="page-links">
+ <a class="page-link" href="/">Home</a><span> • </span><a class="page-link" href="/about">About</a>
+ </div>
+ </header>
+
+ <main class="content" role="main">
+
+<header class="blog-header">
+<h1 class="blog-title">Milan Raj</h1>
+<h2 class="blog-description">Bringing Web, Engineering, Cloud, and Earth tidbits straight to your neural implant</h2>
+</header>
+
+<div class="cf">
+
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting" role="article">
+<div class="article-item">
+<header class="post-header">
+<h2 class="post-title" itemprop="name"><a href="/2016/06/25/scraping-web-pages-in-labview.html" itemprop="url">Scraping Web Pages in LabVIEW</a></h2>
+</header>
+<section class="post-excerpt" itemprop="description">
+<p>Need to use data from a web page in LabVIEW? See how to hunt for data in a web page or use reliable APIs from web services.</p>
+</section>
+<div class="post-meta">
+<time datetime="2016-06-25">25 Jun 2016</time>
+</div>
+</div>
+</article>
+
+</div>
+</main>
+
+<footer class="site-footer">
+<section class="copyright">All content copyright <a href="http://milanraj.com">Milan Raj</a> &copy; 2020 &bull; All rights reserved.</section>
+<section class="poweredby">Made with <a href="https://pages.github.com/">Github Pages</a>, <a href="https://www.11ty.dev/">Eleventy</a>, <a href="https://amp.dev/">AMP Project</a>, and <a href="https://github.com/ageitgey/amplify">Amplify</a></section>
+</footer>
+
+
+
+</body>
+</html>

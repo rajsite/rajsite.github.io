@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html amp lang="en">
+<head>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Lora:400,700' rel='stylesheet' type='text/css'>
+
+<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+
+<script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>
+
+<script async custom-element="amp-anim" src="https://cdn.ampproject.org/v0/amp-anim-0.1.js"></script>
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,minimum-scale=1">
+<meta name="description" content="Need to use data from a web page in LabVIEW? See how to hunt for data in a web page or use reliable APIs from web services.">
+<link rel="canonical" href="https://rajsite.com/2016/06/25/scraping-web-pages-in-labview.html">
+<title>Scraping Web Pages in LabVIEW | Milan Raj</title>
+<style amp-custom>
+/**
+ * VS theme by Andrew Lock (https://andrewlock.net)
+ * Inspired by Visual Studio syntax coloring
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: #393A34;
+	font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	font-size: .9em;
+	line-height: 1.2em;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+pre > code[class*="language-"] {
+	font-size: 1em;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+	background: #C1DEF1;
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+	background: #C1DEF1;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+	border: 1px solid #dddddd;
+	background-color: white;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .2em;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	background: #f8f8f8;
+	border: 1px solid #dddddd;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: #008000;
+	font-style: italic;
+}
+
+.token.namespace {
+	opacity: .7;
+}
+
+.token.string {
+	color: #A31515;
+}
+
+.token.punctuation,
+.token.operator {
+	color: #393A34; /* no highlight */
+}
+
+.token.url,
+.token.symbol,
+.token.number,
+.token.boolean,
+.token.variable,
+.token.constant,
+.token.inserted {
+	color: #36acaa;
+}
+
+.token.atrule,
+.token.keyword,
+.token.attr-value,
+.language-autohotkey .token.selector,
+.language-json .token.boolean,
+.language-json .token.number,
+code[class*="language-css"] {
+	color: #0000ff;
+}
+
+.token.function {
+	color: #393A34;
+}
+
+.token.deleted,
+.language-autohotkey .token.tag {
+	color: #9a050f;
+}
+
+.token.selector,
+.language-autohotkey .token.keyword {
+	color: #00009f;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+
+.token.italic {
+	font-style: italic;
+}
+
+.token.class-name,
+.language-json .token.property {
+	color: #2B91AF;
+}
+
+.token.tag,
+.token.selector {
+	color: #800000;
+}
+
+.token.attr-name,
+.token.property,
+.token.regex,
+.token.entity {
+	color: #ff0000;
+}
+
+.token.directive.tag .tag {
+	background: #ffff00;
+	color: #393A34;
+}
+
+/* overrides color-values for the Line Numbers plugin
+ * http://prismjs.com/plugins/line-numbers/
+ */
+.line-numbers .line-numbers-rows {
+	border-right-color: #a5a5a5;
+}
+
+.line-numbers-rows > span:before {
+	color: #2B91AF;
+}
+
+/* overrides color-values for the Line Highlight plugin
+* http://prismjs.com/plugins/line-highlight/
+*/
+.line-highlight {
+	background: rgba(193, 222, 241, 0.2);
+	background: -webkit-linear-gradient(left, rgba(193, 222, 241, 0.2) 70%, rgba(221, 222, 241, 0));
+	background: linear-gradient(to right, rgba(193, 222, 241, 0.2) 70%, rgba(221, 222, 241, 0));
+}
+
+.social-media-icons {
+  white-space: nowrap;
+}
+
+.social-media-icons .username {
+  margin-left: 4px;
+  margin-right: 10px;
+  margin-bottom: 18px;
+}
+
+.icon {
+  display: inline-block;
+}
+
+.icon > svg {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+}
+
+.icon > svg path {
+  fill: #828282;
+}
+
+.hover-hint {
+  border-bottom: 1px dotted lightgray;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.hover-hint::after {
+  display: none;
+  content: attr(title);
+  margin: 20px;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: black;
+  color: white;
+  text-align: center;
+  white-space: pre-line;
+}
+
+.hover-hint:active::after {
+  display: block;
+}
+
+.cf:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+main {
+  display: block;
+}
+
+body {
+  font-family: "Helvetica Neue", "Open Sans", Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-feature-settings: "liga=1, dlig=1";
+  -ms-font-feature-settings: "liga", "dlig";
+  -webkit-font-feature-settings: "liga", "dlig";
+  -o-font-feature-settings: "liga", "dlig";
+  font-feature-settings: "liga", "dlig";
+}
+
+.site-header {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  margin: 16px auto 0 auto;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@media only screen and (max-width: 800px) {
+  .site-header {
+    padding: 0 16px;
+  }
+}
+
+.site-header .page-links {
+  display: block;
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  font-weight: 200;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 30px;
+}
+
+.site-header .page-links a {
+  text-decoration: none;
+  color: #999999;
+}
+
+.site-header .page-links a:hover {
+  color: #333333;
+}
+
+.blog-header {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border-bottom: 1px solid black;
+}
+
+.blog-header .blog-title {
+  margin-bottom: 8px;
+  font-size: 50px;
+  font-weight: 700;
+  letter-spacing: -2px;
+  outline: 0;
+  line-height: 50px;
+  word-break: break-word;
+  color: #333333;
+}
+
+.blog-header .blog-description {
+  font-size: 28px;
+  margin: 0 0 20px;
+  padding: 0;
+  line-height: 1.2;
+  color: #666666;
+  font-weight: 300;
+}
+
+.content {
+  width: 100%;
+  max-width: 700px;
+  margin: 25px auto 0 auto;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@media only screen and (max-width: 800px) {
+  .content {
+    padding: 0 16px;
+  }
+}
+
+.content article {
+  padding: 0;
+  border-bottom: 1px solid #f2f2f0;
+}
+
+.content article:last-child {
+  border-bottom: 0px;
+}
+
+.pagination {
+  text-align: center;
+  padding: 16px 0 0;
+  font-size: 12px;
+}
+
+.pagination a {
+  color: #999999;
+  text-decoration: none;
+}
+
+.pagination a:hover {
+  color: #333333;
+}
+
+.site-footer {
+  margin: 0 auto;
+  padding: 48px 0;
+  width: 100%;
+  max-width: 700px;
+  font-size: 12px;
+  text-align: center;
+  color: #999999;
+  line-height: 17.6px;
+}
+
+.site-footer a {
+  color: #666666;
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: #333333;
+}
+
+.post .post-meta {
+  font-family: "Helvetica Neue", "Open Sans", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  color: #b3b3b1;
+  line-height: 30px;
+}
+
+.post .post-meta a {
+  color: #b3b3b1;
+  text-decoration: none;
+}
+
+.post .post-meta a:hover {
+  text-decoration: underline;
+}
+
+.post .post-title {
+  font-weight: 700;
+  font-style: normal;
+  letter-spacing: -0.02em;
+  font-size: 36px;
+  line-height: 1.15;
+  color: #333332;
+  margin-bottom: 0px 0px;
+  display: block;
+}
+
+.post .post-title a {
+  text-decoration: none;
+  color: #333332;
+}
+
+.post .post-title a:hover {
+  text-decoration: none;
+}
+
+.post .post-excerpt {
+  letter-spacing: -0.02em;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 1.59;
+  color: #666665;
+}
+
+.post .post-meta-text {
+  color: #b3b3b1;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  overflow: hidden;
+  font-family: "Helvetica Neue", "Open Sans", Arial, Helvetica, sans-serif;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.post .post-content {
+  width: 100%;
+  font-family: Georgia, Cambria, "Times New Roman", Times, "Lora", serif;
+  color: #333333;
+}
+
+.post .post-content h1, .post .post-content h2, .post .post-content h3 {
+  font-family: "Helvetica Neue", "Open Sans", Arial, Helvetica, sans-serif;
+}
+
+.post .post-content h3, .post .post-content h4, .post .post-content h5, .post .post-content h6 {
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1.3;
+  margin-top: 50px;
+  margin-bottom: 0px;
+  font-family: "Helvetica Neue", "Open Sans", Arial, Helvetica, sans-serif;
+}
+
+.post .post-content h3 {
+  font-size: 36px;
+}
+
+.post .post-content h2, .post .post-content h1 {
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 42px;
+  line-height: 1.2;
+  margin-top: 50px;
+  margin-bottom: 0px;
+}
+
+.post .post-content p {
+  font-weight: 400;
+  font-style: normal;
+  font-size: 22px;
+  line-height: 1.59;
+  letter-spacing: -.002em;
+  margin-top: 30px;
+  margin-bottom: 0;
+  color: #333333;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+}
+
+.post .post-content a {
+  color: #333333;
+  text-decoration: underline;
+}
+
+.post .post-content amp-img, .post .post-content amp-youtube {
+  margin-top: 30px;
+}
+
+.post .post-content figure {
+  margin: 30px 0px 0px 0px;
+}
+
+.post .post-content figure amp-img {
+  text-align: center;
+}
+
+.post .post-content figcaption p {
+  font-weight: 400;
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.3;
+  color: #666665;
+  outline: 0;
+  z-index: 300;
+    /* Grrr need to get rid of it */
+  text-align: center;
+  margin-top: 15px;
+}
+
+.post .post-content hr {
+  border: 0;
+  padding: 0;
+  display: block;
+  width: 15%;
+  margin: 30px auto;
+  border: 0px solid #dddddd;
+  border-top: 1px solid #dddddd;
+}
+
+.post .post-content blockquote {
+  margin: 0 0 30px;
+  margin-left: -26px;
+  border-left: 3px solid #57ad68;
+  padding-left: 20px;
+}
+
+.post .post-content blockquote p {
+  letter-spacing: 0.01rem;
+  font-weight: 400;
+  padding-bottom: 3px;
+}
+
+.post .post-content ul, .post .post-content ol {
+  padding: 0;
+  margin: 0;
+}
+
+.post .post-content li {
+  padding: 0;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 23px;
+  line-height: 30px;
+  margin-left: 30px;
+  margin-bottom: 12px;
+  padding-top: 2px;
+    /*p {
+        padding: 0 0 1.618rem;
+      }*/;
+}
+
+.post .post-content ol li {
+  list-style-type: decimal;
+}
+
+.post .teaser {
+  padding: 50px 0 0 0;
+  font-family: "Helvetica Neue", "Open Sans", Arial, Helvetica, sans-serif;
+}
+
+.post .teaser hr {
+  border: 0;
+  padding: 0;
+  display: block;
+  width: 50%;
+  margin: 16px 0 16px 10px;
+  border: 0px solid #dddddd;
+  border-top: 1px solid #dddddd;
+}
+
+.post .teaser a {
+  color: black;
+  text-decoration: none;
+}
+
+.post .teaser a:hover {
+  color: #333333;
+  text-decoration: underline;
+}
+
+.post .teaser .index-headline {
+  border-top: 1px solid #dededc;
+  margin: 0;
+  padding: 16px 0;
+  color: #b3b3b1;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding-bottom: 10px;
+}
+
+.post .teaser .teaser-left {
+  font-size: 14px;
+  float: left;
+  width: 47%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@media only screen and (max-width: 800px) {
+  .post .teaser .teaser-left {
+    width: 100%;
+    padding-bottom: 32px;
+  }
+}
+
+.post .teaser .teaser-left .author-card {
+  overflow: hidden;
+  height: auto;
+}
+
+.post .teaser .teaser-left .author-image {
+  background-image: url('/assets/images/author.jpg');
+  width: 80px;
+  height: 80px;
+  margin-right: 20px;
+  float: left;
+  background-size: cover;
+  border-radius: 100%;
+}
+
+.post .teaser .teaser-left .author-name {
+  font-size: 18px;
+  margin: 0;
+}
+
+.post .teaser .teaser-left .author-bio {
+  margin-top: 1em;
+}
+
+.post .teaser .teaser-left .author-social {
+  line-height: 2em;
+  margin: 0;
+}
+
+.post .teaser .teaser-left .author-meta {
+  padding-left: 10px;
+}
+
+.post .teaser .teaser-left .published {
+  color: #999999;
+}
+
+.post .teaser .teaser-right {
+  float: right;
+  width: 47%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@media only screen and (max-width: 800px) {
+  .post .teaser .teaser-right {
+    width: 100%;
+  }
+}
+
+.post .teaser .teaser-right .site-footer {
+  margin: 0;
+  padding: 0;
+  color: #333333;
+  text-align: left;
+  font-size: 14px;
+  line-height: 1.3;
+  color: #999999;
+}
+
+.post .teaser .teaser-right .site-footer .poweredby {
+  display: block;
+  padding-bottom: 18px;
+  font-weight: 700;
+  color: #333333;
+}
+
+.share {
+  text-align: right;
+  padding: 20px 0 0;
+}
+
+.share a {
+  text-decoration: none;
+  color: #bbbbbb;
+  padding-left: 12px;
+}
+
+.share a .hidden {
+  display: none;
+}
+
+.share a:hover {
+  color: #333333;
+}
+
+pre[class*="language-"],
+code {
+  font-size: 15px;
+  border: 1px solid #e8e8e8;
+  border-radius: 3px;
+  background-color: #eeeeff;
+}
+
+code {
+  padding: 1px 5px;
+}
+
+pre {
+  padding: 8px 12px;
+  overflow-x: scroll;
+}
+
+pre > code {
+  border: 0;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.pagination .disabled {
+  opacity: 0;
+}
+
+</style>
+
+<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+<script async src="https://cdn.ampproject.org/v0.js"></script>
+</head>
+
+<body>
+<amp-analytics type="googleanalytics" id="analytics">
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-78463139-1"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
+
+<header class="site-header">
+ <a href="/" class="logo"><span class="logo"><amp-img src="/assets/images/logo.gif" width="48" height="48" /></span></a>
+ <div class="page-links">
+ <a class="page-link" href="/">Home</a><span> • </span><a class="page-link" href="/about">About</a>
+ </div>
+ </header>
+
+ <main class="content" role="main">
+<article class="post">
+<section class="post-content">
+<a name="topofpage"></a>
+<h1 id="scraping-web-pages-in-labview">Scraping Web Pages in LabVIEW</h1>
+<p>I made a video showing how! Well, I made it <span class="hover-hint" title="Some might even call it months...">several weeks ago...</span></p>
+<p><amp-youtube width="480" height="270" layout="responsive" data-videoid="T-j1cvgNJ1I"></amp-youtube></p>
+<blockquote>
+<p>The goal of the video is to convey that in many cases you can pull data from web resources <em>without</em> needing to automate a web browser control.</p>
+</blockquote>
+<p>Watching the video you will see how to use the built-in browser developer tools, discover HTTP requests that are interesting, and recreate those HTTP requests with the <a href="https://zone.ni.com/reference/en-XX/help/371361M-01/lvcomm/http_client/">LabVIEW HTTP Client VIs</a>.</p>
+<h2 id="workflow">Workflow</h2>
+<p>For example, let's say you want to get the current weather and decide to parse the front page of <a href="https://www.wunderground.com/" title="Take a look at the source with developer tools, there is a lot going on">Weather Underground</a>. The first thing you might try is right clicking on the weather shown on the page, choosing Inspect, and examining the DOM in the <a href="https://developers.google.com/web/tools/chrome-devtools/iterate/inspect-styles/">Elements pane</a>.</p>
+<figure>
+<p><amp-anim width="640" height="509" layout="responsive" src="/assets/scraping/weather_inspect_element.gif"></amp-anim></p>
+<figcaption>
+<p>Using Inspect and the Elements pane to find where the temperature is located in the DOM</p>
+</figcaption>
+</figure>
+<h3 id="problems-relying-on-the-elements-pane">Problems Relying on the Elements Pane</h3>
+<ol>
+<li>
+<p>It is possible the structure of the page may change. Web pages change look and structure all the time, we probably don't want to fix our web scraping VI over and over again.</p>
+</li>
+<li>
+<p>The page might not be very easy to parse. Many pages at best have lots of extraneous information and at worst have invalid / poorly structured HTML.</p>
+</li>
+<li>
+<p>The Elements pane shows the live DOM tree <em>including</em> manipulations by JavaScript. The data might not be in the source HTML and instead may be gathered programmatically via JavaScript and then added to the DOM.</p>
+</li>
+</ol>
+<h3 id="use-an-api-when-available">Use an API When Available</h3>
+<p>The best way to prevent issues with relying on DOM structure is to use an API provided by the web service. A programmatic API is usually the intended way to access data.</p>
+<p>For example, Weather Underground has the <a href="https://www.wunderground.com/weather/api">Weather Underground API</a> which has <a href="https://www.wunderground.com/weather/api/d/docs">online documentation</a> and returns easy to parse JSON:</p>
+<figure>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><br>  <span class="token property">"response"</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>    <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"0.1"</span><span class="token punctuation">,</span><br>    <span class="token property">"termsofService"</span><span class="token operator">:</span> <span class="token string">"http:\/\/www.wunderground.com\/weather\/api\/d\/terms.html"</span><span class="token punctuation">,</span><br>    <span class="token property">"features"</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>      <span class="token property">"conditions"</span><span class="token operator">:</span> <span class="token number">1</span><br>    <span class="token punctuation">}</span><br>  <span class="token punctuation">}</span><span class="token punctuation">,</span><br>  <span class="token property">"current_observation"</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>    <span class="token property">"display_location"</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>      <span class="token property">"full"</span><span class="token operator">:</span> <span class="token string">"Austin, TX"</span><br>    <span class="token punctuation">}</span><span class="token punctuation">,</span><br>    <span class="token property">"station_id"</span><span class="token operator">:</span> <span class="token string">"KTXAUSTI47"</span><span class="token punctuation">,</span><br>    <span class="token property">"observation_time"</span><span class="token operator">:</span> <span class="token string">"Last Updated on June 16, 10:59 PM CDT"</span><span class="token punctuation">,</span><br>    <span class="token property">"observation_time_rfc822"</span><span class="token operator">:</span> <span class="token string">"Thu, 16 Jun 2016 22:59:14 -0500"</span><span class="token punctuation">,</span><br>    <span class="token property">"weather"</span><span class="token operator">:</span> <span class="token string">"Clear"</span><span class="token punctuation">,</span><br>    <span class="token property">"temperature_string"</span><span class="token operator">:</span> <span class="token string">"83.3 F (28.5 C)"</span><span class="token punctuation">,</span><br>    <span class="token property">"temp_f"</span><span class="token operator">:</span> <span class="token number">83.3</span><span class="token punctuation">,</span><br>    <span class="token property">"temp_c"</span><span class="token operator">:</span> <span class="token number">28.5</span><span class="token punctuation">,</span><br>    <span class="token property">"relative_humidity"</span><span class="token operator">:</span> <span class="token string">"69%"</span><span class="token punctuation">,</span><br>    <span class="token property">"wind_string"</span><span class="token operator">:</span> <span class="token string">"From the SSE at 2.0 MPH Gusting to 7.0 MPH"</span><span class="token punctuation">,</span><br>    <span class="token property">"wind_dir"</span><span class="token operator">:</span> <span class="token string">"SSE"</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<figcaption>
+<p>Example response from Weather Underground API filtered to show relevant content.</p>
+</figcaption>
+</figure>
+<p>After signing up for the API to get our key and using the docs to understand the URL structure, we can create a VI that uses the Weather Underground API:</p>
+<figure>
+<p><amp-img width="733" height="286" layout="responsive" src="/assets/scraping/weather_underground_api.png"></amp-img></p>
+<figcaption>
+<p>A LabVIEW VI that calls the Weather Underground API using a zip code and an API Key provided by registration</p>
+</figcaption>
+</figure>
+<h3 id="when-an-api-is-not-available">When An API is Not Available</h3>
+<p>If the web service does not provide an API it is time to get crafty. We have to resort on relying on HTML structure or finding out where data is dynamically loaded from. This is the approach used by <a href="#topofpage">the video</a> and can be summarized roughly as follows:</p>
+<ol>
+<li>
+<p>Find a web page you want to scrape in your web browser.</p>
+</li>
+<li>
+<p>Open the developer tools in your browser, record the network requests, and inspect the network requests for useful data.</p>
+<p>I am partial to the <a href="https://developers.google.com/web/tools/chrome-devtools/profile/network-performance/resource-loading?hl=en#network-panel-overview">Chrome Developer Tools</a>, but <a href="https://developer.mozilla.org/en-US/docs/Tools/Network_Monitor">Firefox</a> and <a href="https://developer.microsoft.com/en-us/microsoft-edge/platform/documentation/f12-devtools-guide/network/" title="We don't talk about Internet Explorer here, unless we do">Edge</a> all provide similar tools.</p>
+</li>
+<li>
+<p>Look through the network requests to find one that includes the data you are trying to find.</p>
+<p>The best responses will be JSON or XML because LabVIEW has VIs to parse those data types.</p>
+<p>If you can only find the data embedded in HTML, you can use LabVIEW's string parsing VIs to search through the HTML and extract your data.</p>
+</li>
+<li>
+<p>Use the <a href="https://zone.ni.com/reference/en-XX/help/371361M-01/lvcomm/http_client/">LabVIEW HTTP Client VIs</a> to re-create a similar network request and query the data inside of LabVIEW</p>
+</li>
+</ol>
+<p>In the video we were lucky to find data as <a href="http://zone.ni.com/reference/en-XX/help/371361M-01/lvconcepts/parsing_xml_files_in_lv/">XML which LabVIEW can parse natively</a> although we did not go through those steps. In addition, we are lucky that we could make the request without any additional complexities like cookies or authentication.</p>
+<h2 id="complexities-of-scraping-web-services">Complexities of Scraping Web Services</h2>
+<blockquote>
+<p>For many LabVIEW applications the approach described in this document probably works pretty well. Local network devices frequently expose an open web interface and many public web services provide a well-documented programmatic API.</p>
+</blockquote>
+<p>However, there are some hurdles that you may run into:</p>
+<ul>
+<li>
+<p>The web service requires user login, i.e. <span class="hover-hint" title="Telling the service who you are or who you represent">Authentication</span> and <span class="hover-hint" title="Figuring out what you can do or requesting something to do">Authorization.</span></p>
+<p>This is a fairly involved topic. However some forms of login such as Client Side SSL, OAuth 1.0a, Basic Authentication, and some approaches to OAuth 2.0 are very doable in LabVIEW. In addition, using .NET Libraries for accessing web services is an approach that works well on certain platforms.</p>
+</li>
+<li>
+<p>The web service requires Cookies / Custom Headers. These are retrievable from HTTP Responses and can be passed into HTTP Requests from LabVIEW.</p>
+</li>
+<li>
+<p>The web service requires reasonably accurate clock times from LabVIEW. While not generally a problem on desktops, some devices running LabVIEW may not have built-in persistent clock components and require time configuration to communicate effectively with some web services.</p>
+</li>
+</ul>
+<p>Have any use cases you ran into, questions, or comments? Ask on the <a href="https://decibel.ni.com/content/docs/DOC-47455">LabVIEW Web Development Community</a>.</p>
+
+</section>
+<footer class="post-footer">
+<section class="share">
+<a class="icon" href="https://github.com/rajsite/rajsite.com/tree/master/./_posts/2016-06-25-scraping-web-pages-in-labview.md">
+Suggest an Edit
+</a>
+<a class="icon" href="https://twitter.com/intent/tweet?url=https://rajsite.com/2016/06/25/scraping-web-pages-in-labview.html&via=rajsite" target="_blank" title="Share on Twitter">
+Share on <span class="icon"><!-- https://github.com/danleech/simple-icons --><svg viewBox="0 0 16 16"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span>
+</a>
+</section>
+</footer>
+
+<div class="teaser">
+
+<div class="teaser-left">
+<h5 class="index-headline">Written by</h5>
+
+<section class="author">
+<div class="author-card">
+<div class="author-image"></div>
+<h4 class="author-name">Milan Raj</h4>
+<p class="author-bio">All Things Web | Engineering | <3 | Austin, TX</p>
+</div>
+
+<div class="author-meta">
+<p class="author-social">
+<span class="social-media-icons">
+<a href="https://github.com/rajsite" title="rajsite on GitHub"><span class="icon"><!-- From https://github.com/danleech/simple-icons --><svg viewBox="0 0 16 16"><path fill="#828282" d="M8 0C3.58 0 0 3.582 0 8c0 3.535 2.292 6.533 5.47 7.59.4.075.547-.172.547-.385 0-.19-.007-.693-.01-1.36-2.226.483-2.695-1.073-2.695-1.073-.364-.924-.89-1.17-.89-1.17-.725-.496.056-.486.056-.486.803.056 1.225.824 1.225.824.714 1.223 1.873.87 2.33.665.072-.517.278-.87.507-1.07-1.777-.2-3.644-.888-3.644-3.953 0-.873.31-1.587.823-2.147-.083-.202-.358-1.015.077-2.117 0 0 .672-.215 2.2.82.638-.178 1.323-.266 2.003-.27.68.004 1.364.092 2.003.27 1.527-1.035 2.198-.82 2.198-.82.437 1.102.163 1.915.08 2.117.513.56.823 1.274.823 2.147 0 3.073-1.87 3.75-3.653 3.947.287.246.543.735.543 1.48 0 1.07-.01 1.933-.01 2.195 0 .215.144.463.55.385C13.71 14.53 16 11.534 16 8c0-4.418-3.582-8-8-8"/></svg>
+</span><span class="username">rajsite</span></a>
+</span>
+
+<span class="social-media-icons">
+<a href="https://twitter.com/rajsite" title="rajsite on Twitter"><span class="icon"><!-- https://github.com/danleech/simple-icons --><svg viewBox="0 0 16 16"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">rajsite</span></a>
+</span>
+
+<span class="social-media-icons">
+<a href="https://linkedin.com/in/milanraj" title="milanraj on LinkedIn"><span class="icon"><!-- From https://github.com/danleech/simple-icons --><svg viewBox="0 0 16 16"><path fill="#828282" d="M13.632 13.635h-2.37V9.922c0-.886-.018-2.025-1.234-2.025-1.235 0-1.424.964-1.424 1.96v3.778h-2.37V6H8.51V7.04h.03c.318-.6 1.092-1.233 2.247-1.233 2.4 0 2.845 1.58 2.845 3.637v4.188zM3.558 4.955c-.762 0-1.376-.617-1.376-1.377 0-.758.614-1.375 1.376-1.375.76 0 1.376.617 1.376 1.375 0 .76-.617 1.377-1.376 1.377zm1.188 8.68H2.37V6h2.376v7.635zM14.816 0H1.18C.528 0 0 .516 0 1.153v13.694C0 15.484.528 16 1.18 16h13.635c.652 0 1.185-.516 1.185-1.153V1.153C16 .516 15.467 0 14.815 0z"/></svg>
+</span><span class="username">milanraj</span></a>
+</span>
+
+</p>
+<hr>
+<p class="published">Published <time datetime="2016-06-25">25 Jun 2016</time></p>
+</div>
+</section>
+</div>
+
+<div class="teaser-right">
+<h5 class="index-headline">Powered By</h5>
+
+<footer class="site-footer">
+<section class="poweredby">Proudly published with <a href="https://pages.github.com/">Github Pages</a>, <a href="https://www.11ty.dev/">Eleventy</a>, <a href="https://amp.dev/">AMP Project</a>, and <a href="https://github.com/ageitgey/amplify">Amplify</a></section>
+<section class="copyright">All content copyright <a href="http://milanraj.com">Milan Raj</a> &copy; 2020<br>All rights reserved.</section>
+</footer>
+</div>
+
+</div>
+</article>
+</main>
+
+
+</body>
+</html>
